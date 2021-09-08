@@ -49,8 +49,7 @@ def operate(friend_table, list_nickname_index, member, choice):
                 random_member_index.append(random_index)
                 random_time -= 1
         for i in range(len(random_member_index)):
-            print(i+1)
-            print(*friend_table[list_nickname_index[random_member_index[i]]])
+            print(f"{i+1}:", *friend_table[list_nickname_index[random_member_index[i]]])
     else:  #exit
         print("Bye")
         sys.exit()
