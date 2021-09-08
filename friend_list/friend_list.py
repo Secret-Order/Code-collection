@@ -39,7 +39,18 @@ def display_members(friend_table, list_nickname_index):
 
 def operate(friend_table, list_nickname_index, member, choice):
     if choice == 1:  #random member
-        print(*friend_table[list_nickname_index[random.randint(0, member)]])
+        random_time = int(input("How many people: "))
+        random_member_index = []
+        while random_time > 0:
+            random_index = random.randint(0, member-1)
+            if random_index in random_member_index:
+                pass
+            else:
+                random_member_index.append(random_index)
+                random_time -= 1
+        for i in range(len(random_member_index)):
+            print(i+1)
+            print(*friend_table[list_nickname_index[random_member_index[i]]])
     else:  #exit
         print("Bye")
         sys.exit()
