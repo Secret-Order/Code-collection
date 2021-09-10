@@ -3,9 +3,8 @@ import random, sys, doctest
 class SKE:
     def __init__(self, filename):
         self.friend_table = self.read_friend(filename)
-        self.nickname_table = self.extract_nickname_list(self.friend_table)
-        self.id_table = self.extract_id_lists(self.friend_table)
-
+        self.nickname_table = self.extract_nickname_list()
+        self.id_table = self.extract_id_lists()
 
 
     @staticmethod
@@ -64,9 +63,9 @@ class SKE:
         list_nickname = self.read_nickname(member)
         list_nickname_index = self.find_index(self.nickname_table, list_nickname)
         print("Group members")
-        self.display_members(self.friend_table, list_nickname_index)
+        self.display_members(list_nickname_index)
         if input("Random members? y/n: ").lower() == "y":
-            self.random_member(self.friend_table, list_nickname_index, member)
+            self.random_member(list_nickname_index, member)
 
 
     def operate(self):
@@ -74,7 +73,7 @@ class SKE:
         print("2. Person")
         choice_1 = int(input("Enter choice: "))
         if choice_1 == 1:
-            self.group_members(self.nickname_table)
+            self.group_members()
         elif choice_1 == 2:
             print("What do you have")
             print("1. Nickname")
@@ -90,11 +89,8 @@ class SKE:
 def main():
     filename = "friend_list.txt"
     friend = SKE(filename)
-    # nickname_table = extract_nickname_lists(friend_table)
-    # id_table = extract_id_lists(friend_table)
-    # # print(nickname_table)
-    # # print(id_table)
-    # operate(friend_table, nickname_table, id_table)
+    friend.operate()
 
 if __name__ == '__main__':
     doctest.testmod()
+    main()
