@@ -18,9 +18,9 @@ class SKE:
     def extract_nickname_list(self):
         return [self.friend_table[i][3] for i in range(len(self.friend_table))]
 
+
     def extract_id_lists(self):
         return [self.friend_table[i][0] for i in range(len(self.friend_table))]
-
 
 
     def read_nickname(self, member):
@@ -59,22 +59,22 @@ class SKE:
             print(*self.friend_table[i])
 
 
-    def group_members(self, nickname_table):
+    def group_members(self):
         member = int(input("How Many people in a Group: "))
-        list_nickname = self.ead_nickname(member)
-        list_nickname_index = self.find_index(nickname_table, list_nickname)
+        list_nickname = self.read_nickname(member)
+        list_nickname_index = self.find_index(self.nickname_table, list_nickname)
         print("Group members")
         self.display_members(self.friend_table, list_nickname_index)
         if input("Random members? y/n: ").lower() == "y":
             self.random_member(self.friend_table, list_nickname_index, member)
 
 
-    def operate(self, id_table):
+    def operate(self):
         print("1. Group")
         print("2. Person")
         choice_1 = int(input("Enter choice: "))
         if choice_1 == 1:
-            self.group_members(self.friend_table, self.nickname_table)
+            self.group_members(self.nickname_table)
         elif choice_1 == 2:
             print("What do you have")
             print("1. Nickname")
@@ -82,14 +82,14 @@ class SKE:
             choice_2 = int(input("Enter choice: "))
             if choice_2 == 1:
                 nickname = [input("Enter Nickname: ")]
-                self.display_members(self.friend_table, self.find_index(self.nickname_table, nickname))
+                self.display_members(self.find_index(self.nickname_table, nickname))
             elif choice_2 == 2:
                 id_student = [input("Enter ID: ")]
-                self.display_members(self.friend_table, self.find_index(id_table, id_student))
+                self.display_members(self.find_index(self.id_table, id_student))
 
-
-    # friend_table = read_file(filename)
-    # # print(friend_table)
+def main():
+    filename = "friend_list.txt"
+    friend = SKE(filename)
     # nickname_table = extract_nickname_lists(friend_table)
     # id_table = extract_id_lists(friend_table)
     # # print(nickname_table)
@@ -98,5 +98,3 @@ class SKE:
 
 if __name__ == '__main__':
     doctest.testmod()
-    filename = "friend_list.txt"
-    friend = SKE(filename)
