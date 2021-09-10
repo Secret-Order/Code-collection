@@ -1,4 +1,4 @@
-import random, sys, doctest
+from random import randint
 
 def read_file(filename):
     lines = open(filename, encoding="utf8").read().splitlines()
@@ -36,7 +36,7 @@ def random_member(friend_table, list_nickname_index, member):
     random_time = int(input("How many people: "))
     random_member_index = []
     while random_time > 0:
-        random_index = random.randint(0, member - 1)
+        random_index = randint(0, member - 1)
         if random_index in random_member_index:
             pass
         else:
@@ -87,6 +87,4 @@ def main():
     operate(friend_table, nickname_table, id_table)
 
 if __name__ == '__main__':
-    doctest.testmod()
     main()
-    
